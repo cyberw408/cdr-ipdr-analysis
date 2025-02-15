@@ -1,10 +1,11 @@
-
 import os
+import dj_database_url  # Add this to parse DATABASE_URL
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'replace_with_your_secret_key'
-DEBUG = True
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
+
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
@@ -28,14 +29,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'cdr_ipdr_analysis.urls'
-
 WSGI_APPLICATION = 'cdr_ipdr_analysis.wsgi.application'
 
+# DATABASE CONFIGURATION
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(
+        default=f"sqlite:///{os.path.join(BASE_DIR, 'db.sqlite3')}"
+    )
 }
 
 LANGUAGE_CODE = 'en-us'
