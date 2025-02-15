@@ -1,0 +1,10 @@
+
+app = "cdr-ipdr-analysis"
+primary_region = "iad"  # Choose your preferred region
+
+[build]
+  [build.args]
+
+[env]
+  DJANGO_SETTINGS_MODULE = "cdr_ipdr_analysis.settings"
+  PORT = "8000"

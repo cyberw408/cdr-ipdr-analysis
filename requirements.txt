@@ -1,0 +1,8 @@
+
+Django==3.2
+channels==3.0
+gunicorn==20.1.0
+redis==4.1.0
+boto3==1.17
+psycopg2-binary==2.8.6
+WeasyPrint==53.0
